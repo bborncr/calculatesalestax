@@ -41,16 +41,15 @@ function calculateSalesTax(salesData, taxRates) {
 
     // loop through the company sales to do the calculations
     for(var sale in companySales){
-      totalSales = totalSales + companySales[sale];
-      totalTaxes = totalTaxes + (companySales[sale] * taxRate);
+      totalSales += companySales[sale];
+      totalTaxes += companySales[sale] * taxRate;
       //console.log(companySales[sale]);
     }
     if (sales[companyName] == undefined){
-      sales[companyName] = {'totalSales': totalSales};
-      sales[companyName]['totalTaxes'] = totalTaxes;
+      sales[companyName] = {'totalSales': totalSales, 'totalTaxes': totalTaxes};
     } else {
-      sales[companyName]['totalSales'] = sales[companyName]['totalSales'] + totalSales;
-      sales[companyName]['totalTaxes'] = sales[companyName]['totalTaxes'] + totalTaxes;
+      sales[companyName]['totalSales'] += totalSales;
+      sales[companyName]['totalTaxes'] += totalTaxes;
     }
   }
 
